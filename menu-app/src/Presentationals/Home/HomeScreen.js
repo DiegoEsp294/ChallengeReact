@@ -1,14 +1,28 @@
 import React from 'react';
+import '../../css/Home.css';
+import DishCard from './DishCard';
 
 function Home() {
     return (
-      <section className="vh-100" style={{backgroundColor: "#d5a133"}}>
-        <div className="container py-5 h-100">
-          <div className="row d-flex justify-content-center align-items-center h-100">
-algo
+      <div className="container py-5 h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+          <div>
+            <h1>Menu</h1>
           </div>
+          {[1,2,3,4,5,6,7,8,9,10,11,12].map((item,index) => (
+            <div key={index} className ="col-lg-3" style={{paddingTop: '10px'}}>
+              <div style={{paddingTop: '8%'}}>
+                <button
+                  type="submit"
+                  className="color"
+                >
+                  <DishCard />
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
   );
   }
   
