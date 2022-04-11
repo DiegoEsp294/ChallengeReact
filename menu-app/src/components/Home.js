@@ -1,10 +1,9 @@
+import HomeScreen from "../Presentationals/Home/HomeScreen";
 
 const Home = (props) => {
 
 	return(
-		<div className="container-fluid">
-      Esto es el home
-		</div>
+		<HomeScreen />
 	)
 }
 

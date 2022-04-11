@@ -1,10 +1,9 @@
+import LoginScreen from "../Presentationals/Login/LoginScreen";
 
 const Login = (props) => {
 
 	return(
-		<div className="container-fluid">
-      Esto es el login
-		</div>
+		<LoginScreen />
 	)
 }
 
