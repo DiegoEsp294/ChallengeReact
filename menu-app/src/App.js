@@ -1,11 +1,12 @@
 import * as React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import './App.css';
 import Home from "./components/Home";
 import Login from "./components/Login";
 import NotFound from "./Presentationals/Routing/NotFound";
 
 function App() {
+  //var token = localStorage.getItem('token');
   return (
     <div className="App">
       <Routes>
