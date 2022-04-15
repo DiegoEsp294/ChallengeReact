@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoginScreen from "../Presentationals/Login/LoginScreen";
 
 import { data_api } from "../api/endpoints";
@@ -10,19 +10,22 @@ const Login = (props) => {
 
 	let navigate = useNavigate();
 
+	const [token, setToken] = useState(localStorage.getItem('token'));
 	const [formData, setFormData] = useState({
     email: '',
 		password: ''
 	});
-	
 	const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 	const handleFormData = (e) => {
-		console.log(e.target.name, e.target.value);
 		setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
 	const handleLogin = () => {
+		//check token
+		setToken(localStorage.getItem('token'));
+
 		setDisabled(true);
 		const data = {
 			email: formData.email, 
@@ -33,6 +36,10 @@ const Login = (props) => {
 			setDisabled(false);
 		}
 		else{
+			
+			//update load
+			setLoading(true);
+
 			axios.post(data_api.url_post_login, {
 				email: data.email, 
 				password: data.password
@@ -44,20 +51,32 @@ const Login = (props) => {
 					navigate('/');
 				}
 				setDisabled(false);
+
+				//update load
+				setLoading(false);
+
 			})
 			.catch(err => {
 				swal(err.response.data.error);
-				console.log(err.response.data.error);
 				setDisabled(false);
+
+				//update load
+				setLoading(false);
+
 			})	
 		}
   };
+
+	useEffect(() => {
+    props.handleToLogin();
+  },[token]);
 
 	return(
 		<LoginScreen 
 			handleFormData={handleFormData}
 			handleLogin={handleLogin}
 			is_disabled={disabled}
+			loading={loading}
 		/>
 	)
 }

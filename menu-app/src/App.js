@@ -1,18 +1,33 @@
-import * as React from "react";
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 import Home from "./components/Home";
 import Login from "./components/Login";
 import NotFound from "./Presentationals/Routing/NotFound";
+import { useNavigate } from 'react-router-dom';
 
 function App() {
-  //var token = localStorage.getItem('token');
+
+  let navigate = useNavigate();
+
+  const [token, setToken] = useState(localStorage.getItem('token'));
+
+  const handleToLogin = (token) => {
+    if(!token){
+      navigate('login');
+    }
+  }
+
+  useEffect(() => {
+    handleToLogin(token);
+  },[token]);
+
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/*" element={<NotFound />} />
+        <Route path="/" element={<Home handleToLogin={handleToLogin}/>} />
+        <Route path="/login" element={<Login handleToLogin={handleToLogin}/>} />
+        <Route path="/*" element={<NotFound handleToLogin={handleToLogin}/>} />
       </Routes>
     </div>
   );

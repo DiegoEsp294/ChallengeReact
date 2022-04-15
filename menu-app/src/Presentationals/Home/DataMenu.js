@@ -7,7 +7,8 @@ function DataMenu({
   is_disabled, 
   handleSearch, 
   dataSearch, 
-  handleAddRecipie
+  handleAddRecipie,
+  loading
 }) {
     return (
       <div className="container">
@@ -52,6 +53,7 @@ function DataMenu({
                 data={dataSearch}
                 is_Search={true}
                 handleAddRecipie={handleAddRecipie}
+                loading={loading}
               />
             </div>
           </div>

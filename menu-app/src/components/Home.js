@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { data_api } from "../api/endpoints";
 import DataMenu from "../Presentationals/Home/DataMenu";
-import FilterScreen from "../Presentationals/Home/FilterScreen";
 import HomeScreen from "../Presentationals/Home/HomeScreen";
 
 import axios from 'axios';
@@ -9,13 +8,14 @@ import swal from 'sweetalert';
 
 const Home = (props) => {
 
+  const [token, setToken] = useState(localStorage.getItem('token'));
   const [dataSearch, setSearch] = useState([]);
-
   const [dataAdded, setAdded] = useState([]);
-
-  const [formData, setFormData] = useState({
-    search: '',
-	});
+  const [formData, setFormData] = useState({search: '',});
+  const [loading, setLoading] = useState({
+    search: false,
+    added: false,
+  });
 
   const handleFormData = (e) => {
 		if(e.target.value.length > 2){
@@ -32,35 +32,84 @@ const Home = (props) => {
   const [disabled, setDisabled] = useState(true);
   
   const handleSearch = () => {
+
+    //check token
+    setToken(localStorage.getItem('token'));
+
     setDisabled(true);
+
+    //update loading
+    setLoading({...loading, search: true})
+
     const {authentication , url_autocomplete } = data_api;
     const url_get_autocomplete = 
       url_autocomplete+authentication+"&addRecipeInformation=true&number=10"+"&query="+formData.search;
-      console.log(url_get_autocomplete);
-      console.log(formData.search);
-      console.log(formData);
     axios.get(url_get_autocomplete)
     .then(res => {
       if(res.status === 200){
-        console.log(res.data);
         setSearch(res.data.results);
       }
       setDisabled(false);
+
+      //update loading
+      setLoading({...loading, search: false})
+
     })
     .catch(err => {
       swal(err.response.data.error);
-      console.log(err.response.data.error);
       setDisabled(false);
+
+      //update loading
+      setLoading({...loading, search: false})
+
     })	
   }
 
   const handleAddRecipie = (item) => {
-    const data = dataAdded
-    data.push(item);
-    setSearch([]);
-    console.log(data);
-    //setAdded();
+
+    //check token
+    setToken(localStorage.getItem('token'));
+
+    //update loading
+    setLoading({...loading, added: true})
+
+    console.log(dataAdded);
+    if(dataAdded.length < 4){
+      const data = dataAdded;
+      data.push(item);
+      setAdded(data);
+      setSearch([]); //loading  
+    } else{
+			swal('no puedes agregar mas recipientes');
+      setSearch([]); //loading  
+    }
+
+    //update loading
+    setLoading({...loading, added: false})
+
   }
+
+  const handleDeleteRecipie = (index) => {
+
+    //check token
+    setToken(localStorage.getItem('token'));
+
+    //update loading
+    setLoading({...loading, added: true})
+
+    const data = dataAdded
+    data.splice(index, 1);
+    setAdded(data);
+    setSearch([]); //loading
+
+    //update loading
+    setLoading({...loading, added: false})
+
+  }
+
+  useEffect(() => {
+    props.handleToLogin(token);
+  },[token]);
 
   return(
     <>
@@ -73,12 +122,16 @@ const Home = (props) => {
             handleSearch={handleSearch}
             dataSearch={dataSearch}
             handleAddRecipie={handleAddRecipie}
+            loading={loading.search}
           />
           <h3 style={{ padding:'30px' }}>Added</h3>
           <HomeScreen
             data={dataAdded}
             is_Search={false}
+            is_null={dataAdded===[]}
             handleAddRecipie={handleAddRecipie}
+            handleDeleteRecipie={handleDeleteRecipie}
+            loading={loading.added}
           />
         </div>
       </div>

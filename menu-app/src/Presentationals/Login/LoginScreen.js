@@ -1,7 +1,8 @@
 import React from 'react';
 import '../../css/Login.css';
+import LoadingScreen from "../LoadingScreen/LoadingScreen";
 
-function LoginScreen({ handleFormData, handleLogin, is_disabled }) {
+function LoginScreen({ handleFormData, handleLogin, is_disabled, loading }) {
     return (
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
@@ -39,6 +40,15 @@ function LoginScreen({ handleFormData, handleLogin, is_disabled }) {
                           />
                       </div>
                     </form>
+                    <>
+                      { loading ?
+                        <div className="pt-1 mb-4">
+                          <LoadingScreen />
+                        </div>
+                      :
+                        null
+                      }
+                    </>
                     <div className="pt-1 mb-4">
                       { is_disabled ?
                         <button 
