@@ -25,7 +25,6 @@ const Home = (props) => {
     search: false,
     added: false,
   });
-
   const handleFormData = (e) => {
 		if(e.target.value.length > 2){
 			setDisabled(false);
@@ -37,9 +36,9 @@ const Home = (props) => {
 		console.log(e.target.name, e.target.value);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const [disabled, setDisabled] = useState(true);
-  
+  const [showModal, setShowModal] = useState(false);
+
   const handleSearch = () => {
 
     //check token
@@ -141,6 +140,15 @@ const Home = (props) => {
 
   }
 
+  const handleDetails = () => {
+    setShowModal(true);
+    console.log('details');
+  }
+
+  const closeButton = () => {
+    setShowModal(false);
+  }
+
   useEffect(() => {
     props.handleToLogin(token);
   },[token]);
@@ -150,28 +158,32 @@ const Home = (props) => {
     <>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
-          <h1>Menu</h1>
+          <h1>Restaurant</h1>
           <DataMenu 
             handleFormData={handleFormData}
             is_disabled={disabled}
             handleSearch={handleSearch}
             dataSearch={dataSearch}
             handleAddRecipie={handleAddRecipie}
-            loading={loading.search}
-            avg_healthScore={dataAdded.total.length === 0 ? "0" : healthScore(dataAdded.total)}
-            preparationTime={dataAdded.total.length === 0 ? "00:00:00" : preparationTime(dataAdded.total)}
-            totalAmount={dataAdded.total.length === 0 ? "0" : totalAmount(dataAdded.total)}
-            
+            loading={loading.search}            
           />
-          <h3 style={{ padding:'30px' }}>Added</h3>
-          <HomeScreen
-            data={dataAdded.total}
-            is_Search={false}
-            is_null={dataAdded.total===[]}
-            handleAddRecipie={handleAddRecipie}
-            handleDeleteRecipie={handleDeleteRecipie}
-            loading={loading.added}
-          />
+          <h2>MENU</h2>
+          <div className="back-list">
+            <HomeScreen
+              data={dataAdded.total}
+              is_Search={false}
+              is_null={dataAdded.total===[]}
+              handleAddRecipie={handleAddRecipie}
+              handleDeleteRecipie={handleDeleteRecipie}
+              handleDetails={handleDetails}
+              closeButton={closeButton}
+              show={showModal}
+              loading={loading.added}
+              avg_healthScore={dataAdded.total.length === 0 ? "0" : healthScore(dataAdded.total)}
+              preparationTime={dataAdded.total.length === 0 ? "00:00:00" : preparationTime(dataAdded.total)}
+              totalAmount={dataAdded.total.length === 0 ? "0" : totalAmount(dataAdded.total)}
+            />
+          </div>
         </div>
       </div>
     </>

@@ -7,8 +7,37 @@ button.color {
 }
 
 div h1 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Avenir Next", Calibri, Verdana, sans-serif;
   font-size: 60px;
-  padding-top: 20px;
+  color: blanchedalmond;
 }
 
+div h2 {
+  font-family: "Avenir Next", Calibri, Verdana, sans-serif;
+  font-size: 45px;
+  color: blanchedalmond;
+}
+
+button.add:hover {
+  background-color: rgba(147, 177, 116, 0.719);
+}
+
+button.details:hover {
+  background-color: rgba(183, 197, 197, 0.795);
+}
+
+.back-list {
+  background-color: rgba(30, 39, 39, 0.726);
+  border-color: black;
+  margin: 1%;
+}
+
+.dish {
+  height: 350px;
+  width: 290px;
+  background-color: rgba(203, 207, 203, 0.822);
+}
+
+.dish:hover {
+  background-color: rgba(30, 39, 39, 0.014);
+}
