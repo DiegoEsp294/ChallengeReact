@@ -8,8 +8,8 @@ function HomeScreen({
   is_Search, 
   handleAddRecipie, 
   handleDeleteRecipie,
-  is_null,
-  loading
+  loading,
+
 }) {
     return (
       <div className="container">
@@ -21,7 +21,17 @@ function HomeScreen({
               {data.map((item, index) => (
                 <div key={index} className ="col-lg-3" style={{paddingTop: '10px'}}>
                   <div style={{paddingTop: '8%'}}>
-                      <DishCard />
+                      <DishCard 
+                        image={item.image}
+                        servings={item.servings}
+                        title={item.title}
+                        vegan={item.vegan}
+                        dairyFree={item.dairyFree}
+                        glutenFree={item.glutenFree}
+                        vegetarian={item.vegetarian}
+                        sustainable={item.sustainable}
+                        veryHealthy={item.veryHealthy}
+                      />
                       { is_Search ?
                       <div className="col-lg-12" style={{paddingTop: '5px'}}>
                         <button 
@@ -47,7 +57,7 @@ function HomeScreen({
                             type="submit" 
                             className="btn btn-danger"
                             style={{marginRight:'10px', borderRadius: '0.8rem'}}
-                            onClick={() => handleDeleteRecipie(index)}
+                            onClick={() => handleDeleteRecipie(index, item)}
                           >
                             <span>
                               <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">

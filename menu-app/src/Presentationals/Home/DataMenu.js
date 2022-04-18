@@ -8,7 +8,10 @@ function DataMenu({
   handleSearch, 
   dataSearch, 
   handleAddRecipie,
-  loading
+  loading,
+  avg_healthScore,
+  preparationTime,
+  totalAmount
 }) {
     return (
       <div className="container">
@@ -18,9 +21,9 @@ function DataMenu({
             <div className="card-header">
             </div>
             <div className="card-body">
-              <h5 className="card-text">Total: $200</h5>
-              <h5 className="card-text">Preparation time: 01:32:00</h5>
-              <h5 className="card-text">Healt Score: 01:12:02</h5>
+              <h5 className="card-text">total amount: ${totalAmount}</h5>
+              <h5 className="card-text">Preparation time: {preparationTime}</h5>
+              <h5 className="card-text">healt Score: {avg_healthScore}</h5>
               <input
                 type="text"
                 id="form2Example27"

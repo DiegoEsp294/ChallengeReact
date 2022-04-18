@@ -1,16 +1,25 @@
 import { useState, useEffect } from "react";
-import { data_api } from "../api/endpoints";
 import DataMenu from "../Presentationals/Home/DataMenu";
 import HomeScreen from "../Presentationals/Home/HomeScreen";
 
 import axios from 'axios';
 import swal from 'sweetalert';
 
+import { data_api } from "../api/endpoints";
+import { 
+  healthScore, 
+  preparationTime, 
+  totalAmount 
+} from "../utils/avg";
+
 const Home = (props) => {
 
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [dataSearch, setSearch] = useState([]);
-  const [dataAdded, setAdded] = useState([]);
+  const [dataAdded, setAdded] = useState({
+    total: [],
+    vegans: 0,
+  });
   const [formData, setFormData] = useState({search: '',});
   const [loading, setLoading] = useState({
     search: false,
@@ -73,23 +82,40 @@ const Home = (props) => {
     //update loading
     setLoading({...loading, added: true})
 
-    console.log(dataAdded);
-    if(dataAdded.length < 4){
-      const data = dataAdded;
-      data.push(item);
-      setAdded(data);
-      setSearch([]); //loading  
+    // check requeriments
+    const count_vegans = dataAdded.vegans;
+    const total = dataAdded.total.length;
+    const data = dataAdded.total;
+    if(total < 4){
+      if(item.vegan){
+        if(count_vegans < 2){
+          data.push(item);
+          setAdded({...dataAdded, total: data, vegans: count_vegans + 1});
+        }
+        else{
+          swal('you have exceeded the limit of non-vegan recipes per menu');
+        }
+      }
+      else{
+        if((total - count_vegans) < 2){
+          data.push(item);
+          setAdded({...dataAdded, total: data});
+        }
+        else {
+          swal('you have exceeded the limit of vegan recipes per menu');
+        }
+      }
     } else{
-			swal('no puedes agregar mas recipientes');
-      setSearch([]); //loading  
+			swal('no more recipes can be added');
     }
+    setSearch([]); 
 
     //update loading
     setLoading({...loading, added: false})
 
   }
 
-  const handleDeleteRecipie = (index) => {
+  const handleDeleteRecipie = (index, item) => {
 
     //check token
     setToken(localStorage.getItem('token'));
@@ -97,10 +123,18 @@ const Home = (props) => {
     //update loading
     setLoading({...loading, added: true})
 
-    const data = dataAdded
+    const data = dataAdded.total
+    const vegans = dataAdded.vegans
     data.splice(index, 1);
-    setAdded(data);
-    setSearch([]); //loading
+
+    if(item.vegan){
+      setAdded({...dataAdded, total: data, vegans: vegans-1});
+    }
+    else{
+      setAdded({...dataAdded, total: data});
+    }
+
+    setSearch([]);
 
     //update loading
     setLoading({...loading, added: false})
@@ -111,6 +145,7 @@ const Home = (props) => {
     props.handleToLogin(token);
   },[token]);
 
+  console.log(dataAdded);
   return(
     <>
       <div className="container py-5 h-100">
@@ -123,12 +158,16 @@ const Home = (props) => {
             dataSearch={dataSearch}
             handleAddRecipie={handleAddRecipie}
             loading={loading.search}
+            avg_healthScore={dataAdded.total.length === 0 ? "0" : healthScore(dataAdded.total)}
+            preparationTime={dataAdded.total.length === 0 ? "00:00:00" : preparationTime(dataAdded.total)}
+            totalAmount={dataAdded.total.length === 0 ? "0" : totalAmount(dataAdded.total)}
+            
           />
           <h3 style={{ padding:'30px' }}>Added</h3>
           <HomeScreen
-            data={dataAdded}
+            data={dataAdded.total}
             is_Search={false}
-            is_null={dataAdded===[]}
+            is_null={dataAdded.total===[]}
             handleAddRecipie={handleAddRecipie}
             handleDeleteRecipie={handleDeleteRecipie}
             loading={loading.added}
