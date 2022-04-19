@@ -6,7 +6,7 @@ function LoginScreen({ handleFormData, handleLogin, is_disabled, loading }) {
     return (
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col col-xl-10">
+          <div className="col col-xl-10" style={{ marginBlockStart: '4%' }}>
             <div className="card-body" style={{backgroundColor:"#faf8f6" , borderRadius: '1.5rem'}}>
               <div className="row g-2">
                 <div className="col-md-6 col-lg-5 d-none d-md-block">
@@ -16,7 +16,7 @@ function LoginScreen({ handleFormData, handleLogin, is_disabled, loading }) {
                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
                   <div className="card-body p-4 p-lg-5 text-black">
                     <form >
-                      <h2 className="fw-normal mb-3 pb-3" style={{letterSpacing: "8px"}}>Wellcome</h2>
+                      <h2 className="fw-normal mb-3 pb-3" style={{letterSpacing: "8px", color: 'black'}}>Wellcome</h2>
 
                       <div className="form-outline mb-4">
                         <label className="form-label" htmlFor="form2Example17">Email address</label>

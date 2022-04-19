@@ -47,7 +47,7 @@ button.details:hover {
 }
 
 .dish {
-  height: 350px;
+  height: 360px;
   width: 290px;
   background-color: rgba(248, 255, 248, 0.692);
   border-radius: 1rem 1rem 0rem 0rem;
@@ -55,4 +55,19 @@ button.details:hover {
 
 .dish:hover {
   background-color: rgba(30, 39, 39, 0.014);
+}
+
+.modal-body {
+  background-color: rgba(224, 230, 230, 0.808);
+}
+
+small span {
+  background-color: rgba(39, 167, 23, 0.904);
+  border-radius: 3px;
+  padding: 3px;
+  color: aliceblue;
+}
+
+h6 span {
+  margin-right: '6px';
 }

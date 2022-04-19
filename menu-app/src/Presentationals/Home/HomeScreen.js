@@ -25,7 +25,11 @@ function HomeScreen({
             :
             <>
               {data.map((item, index) => (
-                <div key={index} className ="col-lg-4" style={{paddingTop: '30px', paddingEnd: '10px'}}>
+                <div 
+                  key={index} 
+                  className ="col-lg-4" 
+                  style={{paddingTop: '30px', paddingEnd: '10px'}}
+                >
                   <div className="container">
                     <div className="row">
                       <div className="col">
@@ -42,8 +46,7 @@ function HomeScreen({
                             dairyFree={item.dairyFree}
                             glutenFree={item.glutenFree}
                             vegetarian={item.vegetarian}
-                            sustainable={item.sustainable}
-                            veryHealthy={item.veryHealthy}
+                            pricePerServing={item.pricePerServing}
                           />
                         </button>
                       </div>

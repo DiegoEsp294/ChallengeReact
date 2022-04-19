@@ -11,8 +11,8 @@ const NotFound = (props) => {
 
   return (
     <div className="container-fluid">
-      <div className="NotFound" style={{paddingBlock:'10%'}}>
-        <h3>404 not found</h3>
+      <div className="NotFound" style={{paddingBlock:'10%', color:'white'}}>
+        <h3>404 NOT FOUND</h3>
       </div>
     </div>
   );

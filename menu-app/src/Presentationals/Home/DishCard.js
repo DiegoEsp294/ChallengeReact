@@ -3,14 +3,12 @@ import '../../css/Home.css';
 
 function DishCard({
   image,
-  servings,
   title,
   vegan,
   dairyFree,
   glutenFree,
   vegetarian, 
-  sustainable,
-  veryHealthy
+  pricePerServing
 }) {
     return (
       <div className="container dish">
@@ -26,15 +24,20 @@ function DishCard({
         </div>
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
-          <div className="row" style={{ marginBlockStart: '20px' }}>
-            <h6 className="card-title">servings: {servings}</h6>
+          <div className="row" style={{ marginBlockStart: '5px' }}>
             <h6 className="card-title">
-              <span style={{ backgroundColor: '#A6DF43', marginRight: '6px' }}>{vegan ? ' vegan ' : null}</span> 
-              <span style={{ backgroundColor: '#E5DC2C', marginRight: '6px' }}>{dairyFree ? ' dairyFree ' : null}</span> 
-              <span style={{ backgroundColor: '#E5962C', marginRight: '6px' }}>{glutenFree ? ' glutenFree ' : null }</span> 
-              <span style={{ backgroundColor: '#2CE5CB', marginRight: '6px' }}>{vegetarian ? ' vegetarian ' : null}</span> 
-              <span style={{ backgroundColor: '#752CE5', marginRight: '6px' }}>{sustainable ? ' sustainable ' : null}</span> 
-              <span style={{ backgroundColor: '#E52CC9', marginRight: '6px' }}>{veryHealthy ? ' veryHealthy ' : null}</span> 
+              <small><span>${pricePerServing}</span></small>
+            </h6>
+            <h6 className="card-title">
+              <small>healt score: <span>{16}</span></small>
+            </h6>
+            <h6 className="card-title">
+              <small>ready in minutes: <span>{40}</span></small>
+            </h6>
+            <h6 className="card-title">
+              <small style={{ backgroundColor: '#A6DF43' }}>{vegan ? ' vegan ' : null}</small>
+              <small style={{ backgroundColor: '#E5DC2C' }}>{dairyFree ? ' dairyFree ' : null}</small>
+              <small style={{ backgroundColor: '#2CE5CB' }}>{vegetarian ? ' vegetarian ' : null}</small>
             </h6>
           </div>
         </div>

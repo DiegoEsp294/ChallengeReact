@@ -4,7 +4,7 @@ export var healthScore =  function avg_healthScore(array) {
   var array_healthScore = array.map(function(elem) { return elem.healthScore; });
   var sum_healthScore = array_healthScore.reduce((x, y) => x + y, 0);
   var ArrayLen = array_healthScore.length;
-  return sum_healthScore / ArrayLen;
+  return (sum_healthScore / ArrayLen).toFixed(2);
 };
 
 export var preparationTime = function preparationTime(array) {
@@ -22,6 +22,5 @@ export var preparationTime = function preparationTime(array) {
   var array_amount = array.map(function(elem) { return elem.pricePerServing; });
   //sum price
   var total_amount = array_amount.reduce((x, y) => x + y, 0);
-  var ramount = parseFloat(total_amount);
-  return total_amount;
- }
+  return total_amount.toFixed(2);
+ }  
