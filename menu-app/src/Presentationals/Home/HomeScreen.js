@@ -25,7 +25,7 @@ function HomeScreen({
             :
             <>
               {data.map((item, index) => (
-                <div key={index} className ="col-lg-4" style={{paddingTop: '20px', paddingBlockEnd: '10px'}}>
+                <div key={index} className ="col-lg-4" style={{paddingTop: '30px', paddingEnd: '10px'}}>
                   <div className="container">
                     <div className="row">
                       <div className="col">
@@ -54,7 +54,7 @@ function HomeScreen({
                             <button 
                               type="submit" 
                               className="btn btn-danger"
-                              style={{ width: '310px' }}
+                              style={{ width: '293px' }}
                               onClick={() => handleDeleteRecipie(index, item)}
                             >
                               <span>

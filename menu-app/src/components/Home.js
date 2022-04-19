@@ -11,6 +11,7 @@ import {
   preparationTime, 
   totalAmount 
 } from "../utils/avg";
+import EmptyDish from "../Presentationals/Home/EmptyDish";
 
 const Home = (props) => {
 
@@ -158,31 +159,50 @@ const Home = (props) => {
     <>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
-          <h1>Restaurant</h1>
-          <DataMenu 
-            handleFormData={handleFormData}
-            is_disabled={disabled}
-            handleSearch={handleSearch}
-            dataSearch={dataSearch}
-            handleAddRecipie={handleAddRecipie}
-            loading={loading.search}            
-          />
-          <h2>MENU</h2>
-          <div className="back-list">
-            <HomeScreen
-              data={dataAdded.total}
-              is_Search={false}
-              is_null={dataAdded.total===[]}
+          <h2>RESTAURANT</h2>
+          <div className="row" style={{ marginBlockStart: '20px' }}>
+            <DataMenu 
+              handleFormData={handleFormData}
+              is_disabled={disabled}
+              handleSearch={handleSearch}
+              dataSearch={dataSearch}
               handleAddRecipie={handleAddRecipie}
-              handleDeleteRecipie={handleDeleteRecipie}
-              handleDetails={handleDetails}
-              closeButton={closeButton}
-              show={showModal}
-              loading={loading.added}
-              avg_healthScore={dataAdded.total.length === 0 ? "0" : healthScore(dataAdded.total)}
-              preparationTime={dataAdded.total.length === 0 ? "00:00:00" : preparationTime(dataAdded.total)}
-              totalAmount={dataAdded.total.length === 0 ? "0" : totalAmount(dataAdded.total)}
+              loading={loading.search}            
             />
+          </div>
+          <div className="row" style={{ marginBlockStart: '40px' }}>
+              <h2>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+                    <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+                    <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                    <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                  </svg>
+                </span>
+                <span>
+                  MENU
+                </span>
+              </h2>
+          </div>
+          <div className="row">
+            { dataAdded.total.length === 0 ?
+              <EmptyDish />
+            :
+              <HomeScreen
+                data={dataAdded.total}
+                is_Search={false}
+                is_null={dataAdded.total===[]}
+                handleAddRecipie={handleAddRecipie}
+                handleDeleteRecipie={handleDeleteRecipie}
+                handleDetails={handleDetails}
+                closeButton={closeButton}
+                show={showModal}
+                loading={loading.added}
+                avg_healthScore={healthScore(dataAdded.total)}
+                preparationTime={preparationTime(dataAdded.total)}
+                totalAmount={totalAmount(dataAdded.total)}
+              />
+            }
           </div>
         </div>
       </div>

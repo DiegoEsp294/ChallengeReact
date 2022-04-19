@@ -29,12 +29,12 @@ function DishCard({
           <div className="row" style={{ marginBlockStart: '20px' }}>
             <h6 className="card-title">servings: {servings}</h6>
             <h6 className="card-title">
-              <span style={{ backgroundColor: '#A6DF43' }}>{vegan ? ' vegan ' : null}</span> 
-              <span style={{ backgroundColor: '#E5DC2C' }}>{dairyFree ? ' dairyFree ' : null}</span> 
-              <span style={{ backgroundColor: '#E5962C' }}>{glutenFree ? ' glutenFree ' : null }</span> 
-              <span style={{ backgroundColor: '#2CE5CB' }}>{vegetarian ? ' vegetarian ' : null}</span> 
-              <span style={{ backgroundColor: '#752CE5' }}>{sustainable ? ' sustainable ' : null}</span> 
-              <span style={{ backgroundColor: '#E52CC9' }}>{veryHealthy ? ' veryHealthy ' : null}</span> 
+              <span style={{ backgroundColor: '#A6DF43', marginRight: '6px' }}>{vegan ? ' vegan ' : null}</span> 
+              <span style={{ backgroundColor: '#E5DC2C', marginRight: '6px' }}>{dairyFree ? ' dairyFree ' : null}</span> 
+              <span style={{ backgroundColor: '#E5962C', marginRight: '6px' }}>{glutenFree ? ' glutenFree ' : null }</span> 
+              <span style={{ backgroundColor: '#2CE5CB', marginRight: '6px' }}>{vegetarian ? ' vegetarian ' : null}</span> 
+              <span style={{ backgroundColor: '#752CE5', marginRight: '6px' }}>{sustainable ? ' sustainable ' : null}</span> 
+              <span style={{ backgroundColor: '#E52CC9', marginRight: '6px' }}>{veryHealthy ? ' veryHealthy ' : null}</span> 
             </h6>
           </div>
         </div>
