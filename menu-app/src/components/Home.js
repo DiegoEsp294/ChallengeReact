@@ -1,72 +1,26 @@
 import { useState, useEffect } from "react";
-import DataMenu from "../Presentationals/Home/DataMenu";
 import HomeScreen from "../Presentationals/Home/HomeScreen";
 
-import axios from 'axios';
 import swal from 'sweetalert';
-
-import { data_api } from "../api/endpoints";
-import { 
-  healthScore, 
-  preparationTime, 
-  totalAmount 
-} from "../utils/accumulated";
+import { healthScore, preparationTime, totalAmount } from "../utils/accumulated";
 import EmptyDish from "../Presentationals/Home/EmptyDish";
+import Search from "./Search";
 
 const Home = (props) => {
 
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [dataSearch, setSearch] = useState([]);
   const [dataAdded, setAdded] = useState({ total: [], vegans: 0 });
-  const [formData, setFormData] = useState({search: '',});
   const [loading, setLoading] = useState({ search: false, added: false });
-  const [disabled, setDisabled] = useState(true);
   const [showModal, setShowModal] = useState(false);
 
-  const handleFormData = (e) => {
-		if(e.target.value.length > 2){
-			setDisabled(false);
-    }
-    else{
-			setDisabled(true);
-      setSearch([]);
-    }
-		console.log(e.target.name, e.target.value);
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleSearchLoad = (bool) => {
+    console.log(bool);
+    setLoading({...loading, search: bool})
+  }
 
-  const handleSearch = () => {
-
-    //check token
-    setToken(localStorage.getItem('token'));
-
-    setDisabled(true);
-
-    //update loading
-    setLoading({...loading, search: true})
-
-    const {authentication , url_autocomplete } = data_api;
-    const url_get_autocomplete = 
-      url_autocomplete+authentication+"&addRecipeInformation=true&number=10"+"&query="+formData.search;
-    axios.get(url_get_autocomplete)
-    .then(res => {
-      if(res.status === 200){
-        setSearch(res.data.results);
-      }
-      setDisabled(false);
-
-      //update loading
-      setLoading({...loading, search: false})
-
-    })
-    .catch(err => {
-      swal(err.response.data.error);
-      setDisabled(false);
-
-      //update loading
-      setLoading({...loading, search: false})
-
-    })	
+  const updateDataSearch = (data) => {
+    setSearch(data);
   }
 
   const handleAddRecipie = (item) => {
@@ -138,7 +92,6 @@ const Home = (props) => {
 
   const handleDetails = () => {
     setShowModal(true);
-    console.log('details');
   }
 
   const closeButton = () => {
@@ -156,13 +109,12 @@ const Home = (props) => {
         <div className="row d-flex justify-content-center align-items-center h-100">
           <h2>RESTAURANT</h2>
           <div className="row" style={{ marginBlockStart: '20px' }}>
-            <DataMenu 
-              handleFormData={handleFormData}
-              is_disabled={disabled}
-              handleSearch={handleSearch}
-              dataSearch={dataSearch}
+            <Search
+              handleSearchLoad={handleSearchLoad}
+              data={dataSearch}
               handleAddRecipie={handleAddRecipie}
-              loading={loading.search}            
+              loading={loading.search}
+              updateDataSearch={updateDataSearch}
             />
           </div>
           <div className="row" style={{ marginBlockStart: '40px' }}>
@@ -186,7 +138,6 @@ const Home = (props) => {
               <HomeScreen
                 data={dataAdded.total}
                 is_Search={false}
-                is_null={dataAdded.total===[]}
                 handleAddRecipie={handleAddRecipie}
                 handleDeleteRecipie={handleDeleteRecipie}
                 handleDetails={handleDetails}

@@ -6,7 +6,8 @@ function DishCard({
   title,
   vegan,
   dairyFree,
-  glutenFree,
+  healthScore,
+  readyInMinutes,
   vegetarian, 
   pricePerServing
 }) {
@@ -29,10 +30,10 @@ function DishCard({
               <small><span>${pricePerServing}</span></small>
             </h6>
             <h6 className="card-title">
-              <small>healt score: <span>{16}</span></small>
+              <small>health score: <span>{healthScore}</span></small>
             </h6>
             <h6 className="card-title">
-              <small>ready in minutes: <span>{40}</span></small>
+              <small>ready in minutes: <span>{readyInMinutes}</span></small>
             </h6>
             <h6 className="card-title">
               <small style={{ backgroundColor: '#A6DF43' }}>{vegan ? ' vegan ' : null}</small>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LoginScreen from "../Presentationals/Login/LoginScreen";
 
-import { data_api } from "../api/endpoints";
+import { postLogin } from "../api/services";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
@@ -40,7 +40,7 @@ const Login = (props) => {
 			//update load
 			setLoading(true);
 
-			axios.post(data_api.url_post_login, {
+			axios.post(postLogin(), {
 				email: data.email, 
 				password: data.password
 			})

@@ -44,8 +44,9 @@ function HomeScreen({
                             title={item.title}
                             vegan={item.vegan}
                             dairyFree={item.dairyFree}
-                            glutenFree={item.glutenFree}
                             vegetarian={item.vegetarian}
+                            healthScore={item.healthScore}
+                            readyInMinutes={item.readyInMinutes}
                             pricePerServing={item.pricePerServing}
                           />
                         </button>
