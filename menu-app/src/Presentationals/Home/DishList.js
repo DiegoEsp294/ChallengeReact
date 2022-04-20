@@ -2,9 +2,9 @@ import React from 'react';
 import '../../css/Home.css';
 import DishCard from './DishCard';
 import LoadingScreen from "../LoadingScreen/LoadingScreen";
-import ModalDetails from "../Home/ModalDetails";
+import ModalDetails from "./ModalDetails";
 
-function HomeScreen({
+function DishList({
   data, 
   is_Search, 
   handleAddRecipie, 
@@ -57,8 +57,7 @@ function HomeScreen({
                         { !is_Search ?
                             <button 
                               type="submit" 
-                              className="btn btn-danger"
-                              style={{ width: '293px' }}
+                              className="btn btn-danger danger"
                               onClick={() => handleDeleteRecipie(index, item)}
                             >
                               <span>
@@ -92,4 +91,4 @@ function HomeScreen({
   );
   }
   
-  export default HomeScreen;
+  export default DishList;

@@ -46,13 +46,6 @@ button.details:hover {
   margin: 1%;
 }
 
-.dish {
-  height: 360px;
-  width: 290px;
-  background-color: rgba(248, 255, 248, 0.692);
-  border-radius: 1rem 1rem 0rem 0rem;
-}
-
 .dish:hover {
   background-color: rgba(30, 39, 39, 0.014);
 }
@@ -70,4 +63,58 @@ small span {
 
 h6 span {
   margin-right: '6px';
+}
+
+.dish {
+  background-color: rgba(248, 255, 248, 0.692);
+  border-radius: 1rem 1rem 0rem 0rem;
+}
+
+/* Extra small devices (phones, 400px and down) */
+@media only screen and (max-width: 400px) {
+  .dish {
+    width: 200px;
+    height: 450px;
+  }
+
+  .danger {
+    width: 200px;
+  }
+  
+}
+
+/* Small devices (portrait tablets and large phones, 400px and up) */
+@media only screen and (min-width: 400px) {
+  .dish {
+    width: 300px;  
+    height: 400px;
+  }
+
+  .danger {
+    width: 300px;
+  }  
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .dish {
+    width: 300px;  
+    height: 390px;
+  }
+
+  .danger {
+    width: 300px;
+  }  
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .dish {
+    width: 300px;  
+    height: 400px;
+  }
+
+  .danger {
+    width: 300px;
+  }  
 }

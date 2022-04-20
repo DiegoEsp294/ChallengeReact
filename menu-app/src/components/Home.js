@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import HomeScreen from "../Presentationals/Home/HomeScreen";
+import DishList from "../Presentationals/Home/DishList";
 
 import swal from 'sweetalert';
 import { healthScore, preparationTime, totalAmount } from "../utils/accumulated";
@@ -15,7 +15,6 @@ const Home = (props) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleSearchLoad = (bool) => {
-    console.log(bool);
     setLoading({...loading, search: bool})
   }
 
@@ -100,9 +99,8 @@ const Home = (props) => {
 
   useEffect(() => {
     props.handleToLogin(token);
-  },[token]);
+  },[token,props]);
 
-  console.log(dataAdded);
   return(
     <>
       <div className="container py-5 h-100">
@@ -135,7 +133,7 @@ const Home = (props) => {
             { dataAdded.total.length === 0 ?
               <EmptyDish />
             :
-              <HomeScreen
+              <DishList
                 data={dataAdded.total}
                 is_Search={false}
                 handleAddRecipie={handleAddRecipie}

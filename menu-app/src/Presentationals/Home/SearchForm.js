@@ -18,7 +18,7 @@ function SearchForm({
                   id="formSearch"
                   name="dish"
                   className="form-control-sm"
-                  style={{ marginRight: '5px', width: '400px' }}
+                  style={{ marginRight: '5px', width: '250px' }}
                   onChange={handleChange}
                   value={values.dish}
                 />
@@ -44,36 +44,3 @@ function SearchForm({
   }
   
   export default SearchForm;
-
-
-/*   <form >
-  <div className="row">
-    <div className="col">
-      <div className="row">
-        <input
-          type="text"
-          id="formSearch"
-          name="name"
-          className="input"
-          style={{ marginRight: '5px' }}
-          onChange={handleChange}
-          value={values.name}
-        />
-      </div>
-      <div className="row">
-        {errors.name}
-      </div>
-    </div>
-    <div className="col">
-      <button 
-        className="btn btn-success"
-        type="button"
-        disabled={isSubmitting}
-        onClick={handleSubmit}
-      >
-        Search recipes
-      </button>
-    </div>
-  </div>
-</form>
- */

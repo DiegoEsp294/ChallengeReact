@@ -15,7 +15,7 @@ export var preparationTime = function preparationTime(array) {
   var rhours = Math.floor(hours);
   var minutes = (hours - rhours) * 60;
   var rminutes = Math.round(minutes);
-  return rhours + ":" + rminutes + "hs";
+  return rhours + ":" + rminutes + ":00 hs ";
  }
 
  export var totalAmount = function totalAmount(array) {
