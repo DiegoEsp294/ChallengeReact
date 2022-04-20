@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../css/Login.css';
 import LoadingScreen from "../LoadingScreen/LoadingScreen";
 
 function LoginScreen({ handleFormData, handleLogin, is_disabled, loading }) {
@@ -50,24 +49,14 @@ function LoginScreen({ handleFormData, handleLogin, is_disabled, loading }) {
                       }
                     </>
                     <div className="pt-1 mb-4">
-                      { is_disabled ?
-                        <button 
-                          className="btn btn-dark btn-lg btn-block"
-                          type="submit"
-                          onClick={() => handleLogin()}
-                          disabled
-                        >
-                          Send
-                        </button>
-                      :
-                        <button 
-                          className="btn btn-dark btn-lg btn-block"
-                          type="submit"
-                          onClick={() => handleLogin()}
-                        >
-                          Send
-                        </button>
-                      }
+                      <button 
+                        className="btn btn-dark btn-lg btn-block"
+                        type="submit"
+                        onClick={() => handleLogin()}
+                        disabled= {is_disabled}
+                      >
+                        Send
+                      </button>
                     </div>
                   </div>
                 </div>
