@@ -3,13 +3,15 @@ Alkemy Challenge
 
 
 ## Versions
-**NPM** 8.7.0
-**NODE** v17.1.0
+
+#### **NPM** 8.7.0
+
+#### **NODE** v17.1.0
 
 ## Run
-npm run start
+#### npm run start
 
 ## Decisions
 
-number of dishes per list = 10
-public apiKey in services.js
+#### number of dishes per list = 10
+#### public apiKey in services.js
