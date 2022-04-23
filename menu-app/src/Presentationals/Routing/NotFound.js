@@ -1,13 +1,13 @@
 import '../../css/NotFound.css';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 const NotFound = (props) => {
 
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  let token = localStorage.getItem('token');
 
   useEffect(() => {
     props.handleToLogin();
-  },[token]);
+  },[token, props]);
 
   return (
     <div className="container-fluid">

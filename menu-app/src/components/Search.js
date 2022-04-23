@@ -27,7 +27,7 @@ const Search = (props) => (
       }}
       onSubmit={(values, { setSubmitting }) => {
         props.handleSearchLoad(true)
-        axios.get(getAutocompleteURL(true,10,values.dish))
+        axios.get(getAutocompleteURL(values.dish))
         .then(res => {
           props.updateDataSearch(res.data.results);
           setSubmitting(false); //disabled

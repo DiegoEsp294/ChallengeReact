@@ -11,7 +11,6 @@ Alkemy Challenge
 ## Run
 #### npm run start
 
-## Decisions
+## Decision
 
-#### number of dishes per list = 10
-#### public apiKey in services.js
+#### added .env

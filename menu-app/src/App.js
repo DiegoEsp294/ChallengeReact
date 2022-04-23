@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from "react-router-dom";
-import './App.css';
 import Home from "./components/Home";
 import Login from "./components/Login";
 import NotFound from "./Presentationals/Routing/NotFound";
 import { useNavigate } from 'react-router-dom';
+import './App.css';
 
 function App() {
 
   let navigate = useNavigate();
-
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  let token = localStorage.getItem('token');
 
   const handleToLogin = (token) => {
     if(!token){

@@ -15,12 +15,17 @@ function DishCard({
       <div className="container dish">
         <div className="row center-text">
           <div className="col">
-            <img 
+            <img
               src={image}
               alt="Dish"
               width="100%"
               height="100%"
-              style={{ marginBlockStart: '2px' }}
+              style={{ 
+                marginBlockStart: '3px', 
+                borderRadius: '2rem', 
+                borderStyle: 'solid',
+                borderColor: 'white' 
+              }}
             />
           </div>
         </div>

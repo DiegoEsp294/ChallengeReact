@@ -8,6 +8,8 @@ import Search from "./Search";
 
 const Home = (props) => {
 
+  const MAX_VEGAN = process.env.REACT_APP_MAX_COUNT_VEGAN;
+
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [dataSearch, setSearch] = useState([]);
   const [dataAdded, setAdded] = useState({ total: [], vegans: 0 });
@@ -26,7 +28,6 @@ const Home = (props) => {
 
     //check token
     setToken(localStorage.getItem('token'));
-
     //update loading
     setLoading({...loading, added: true})
 
@@ -36,21 +37,21 @@ const Home = (props) => {
     const data = dataAdded.total;
     if(total < 4){
       if(item.vegan){
-        if(count_vegans < 2){
+        if(count_vegans < MAX_VEGAN){
           data.push(item);
           setAdded({...dataAdded, total: data, vegans: count_vegans + 1});
         }
         else{
-          swal('you have exceeded the limit of non-vegan recipes per menu');
+          swal('you have exceeded the limit of vegan recipes per menu');
         }
       }
       else{
-        if((total - count_vegans) < 2){
+        if((total - count_vegans) < MAX_VEGAN){
           data.push(item);
           setAdded({...dataAdded, total: data});
         }
         else {
-          swal('you have exceeded the limit of vegan recipes per menu');
+          swal('you have exceeded the limit of non-vegan recipes per menu');
         }
       }
     } else{
@@ -67,23 +68,19 @@ const Home = (props) => {
 
     //check token
     setToken(localStorage.getItem('token'));
-
     //update loading
     setLoading({...loading, added: true})
 
     const data = dataAdded.total
     const vegans = dataAdded.vegans
     data.splice(index, 1);
-
     if(item.vegan){
       setAdded({...dataAdded, total: data, vegans: vegans-1});
     }
     else{
       setAdded({...dataAdded, total: data});
     }
-
     setSearch([]);
-
     //update loading
     setLoading({...loading, added: false})
 
