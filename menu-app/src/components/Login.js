@@ -12,7 +12,7 @@ const Login = (props) => {
 
 	const [token, setToken] = useState(localStorage.getItem('token'));
 	const [formData, setFormData] = useState({
-    email: '',
+    	email: '',
 		password: ''
 	});
 	const [disabled, setDisabled] = useState(false);
@@ -39,8 +39,11 @@ const Login = (props) => {
 			
 			//update load
 			setLoading(true);
+			localStorage.setItem('token', 'asdsad');
+			navigate('/');
+			setDisabled(false);
 
-			axios.post(postLogin(), {
+/* 			axios.post(postLogin(), {
 				email: data.email, 
 				password: data.password
 			})
@@ -64,7 +67,7 @@ const Login = (props) => {
 				setLoading(false);
 
 			})	
-		}
+ */		}
   };
 
 	useEffect(() => {
