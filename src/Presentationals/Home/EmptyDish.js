@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../css/Home.css';
+import emptyImage from '../../images/empty.png';
 
 function EmptyDish() {
     return (
@@ -7,7 +8,7 @@ function EmptyDish() {
         <div className="row">
           <div className="col-6" style={{ textAlign: 'right' }}>
             <img
-              src="assets/empty.png"
+              src={emptyImage}
               width="220px"
               height="180px"
             />
